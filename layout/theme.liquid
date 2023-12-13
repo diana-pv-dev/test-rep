@@ -39,9 +39,9 @@
 					assign font_body_url = settings.font_body_shopify | font_url
 					assign font_body_format = 'woff2'
 				endunless
-			when 'example-font'
-				assign font_body_url = 'ExampleFont.otf' | asset_url
-				assign font_body_format = 'opentype'
+			when 'gothic-a1'
+				assign font_body_url = 'GothicA1-Regular.woff2' | asset_url
+				assign font_body_format = 'woff2'
 		endcase
 
 		case settings.font_heading
@@ -50,9 +50,9 @@
 					assign font_heading_url = settings.font_heading_shopify | font_url
 					assign font_heading_format = 'woff2'
 				endunless
-			when 'example-font'
-				assign font_heading_url = 'ExampleFont.otf' | asset_url
-				assign font_heading_format = 'opentype'
+			when 'gothic-a1'
+				assign font_heading_url = 'GothicA1-Regular.woff2' | asset_url
+				assign font_heading_format = 'woff2'
 		endcase
 	%}
 

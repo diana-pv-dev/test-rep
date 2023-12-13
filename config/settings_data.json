@@ -1,6 +1,7 @@
 {
   "current": {
-    "content_for_index": []
+    "font_body": "gothic-a1",
+    "font_heading": "gothic-a1"
   },
   "presets": {
     "Default": {

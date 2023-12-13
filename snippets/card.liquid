@@ -1,0 +1,64 @@
+{{ 'component-card.css' | asset_url | stylesheet_tag }}
+
+<div class="card {% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
+  <a class="card__link" href="{{ card_product.url }}">
+    <div class="card__media">
+      <img class="card__img" src="{{ card_product.featured_media | img_url: 'large' }}" alt="{{ card_product.title | escape }}">
+    </div>
+  
+  
+    <div class="card__content">
+      <h3 class="card__title">
+        {{ card_product.title }}
+      </h3>
+    </div>
+  </a>
+
+  <div class="card__content">
+    {%- liquid
+      assign product_form_id = 'quick-add-' | append: section_id | append: card_product.id
+    -%}
+    {% comment %} <product-form
+      class="product-form"
+      data-section-id="{{ section.id }}"
+    >
+      {%- form 'product',
+        card_product,
+        id: product_form_id,
+        class: 'form',
+        novalidate: 'novalidate',
+        data-type: 'add-to-cart-form'
+      -%}
+        <input
+          type="hidden"
+          name="id"
+          value="{{ card_product.selected_or_first_available_variant.id }}"
+          {% if card_product.selected_or_first_available_variant.available == false or quantity_rule_soldout %}
+            disabled
+          {% endif %}
+          class="product-variant-id"
+        >
+        <div class="product-form__buttons">
+          <button
+            id="ProductSubmitButton-{{ section_id }}"
+            type="submit"
+            name="add"
+            class="card__btn"
+            {% if card_product.selected_or_first_available_variant.available == false or quantity_rule_soldout %}
+              disabled
+            {% endif %}
+          >
+            <span>
+              {%- if card_product.selected_or_first_available_variant.available == false or quantity_rule_soldout -%}
+                {{ 'products.product.sold_out' | t }}
+              {%- else -%}
+                {{ 'products.product.add_to_cart' | t }} - {{ card_product.price | money }}
+              {%- endif -%}
+            </span>
+            {%- render 'loading-spinner' -%}
+          </button>
+        </div>
+      {%- endform -%}
+    </product-form> {% endcomment %}
+  </div>
+</div>

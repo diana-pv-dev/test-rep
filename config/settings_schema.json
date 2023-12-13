@@ -64,11 +64,11 @@
             "label": "Shopify"
           },
           {
-            "value": "example-font",
-            "label": "Example font"
+            "value": "gothic-a1",
+            "label": "Gothic A1"
           }
         ],
-        "default": "shopify"
+        "default": "gothic-a1"
       },
       {
         "type": "font_picker",
@@ -91,11 +91,11 @@
             "label": "Shopify"
           },
           {
-            "value": "example-font",
-            "label": "Example font"
+            "value": "gothic-a1",
+            "label": "Gothic A1"
           }
         ],
-        "default": "shopify"
+        "default": "gothic-a1"
       },
       {
         "type": "font_picker",

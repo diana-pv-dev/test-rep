@@ -1,0 +1,31 @@
+.featured-collection {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 50px;
+    border-bottom: 0.1rem solid rgba(var(--color-foreground), 0.08);
+  
+    &__title {
+      color: #656874;
+      text-align: center;
+      font-family: var(--font-heading);
+      font-size: 26px;
+      font-style: normal;
+      font-weight: 900;
+      line-height: 36px;
+    }
+  
+    &__content {
+      display: grid;
+      row-gap: 50px;
+      grid-template-columns: 1fr;
+  
+      @media (min-width: 756px) {
+        row-gap: 119px;
+        column-gap: 40px;
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+  }
+  
