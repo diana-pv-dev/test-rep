@@ -1,0 +1,30 @@
+.featured-collection {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 50px;
+  border-bottom: 0.1rem solid rgba(var(--color-foreground), 0.08);
+}
+.featured-collection__title {
+  color: #656874;
+  text-align: center;
+  font-family: var(--font-heading);
+  font-size: 26px;
+  font-style: normal;
+  font-weight: 900;
+  line-height: 36px;
+}
+.featured-collection__content {
+  display: grid;
+  row-gap: 50px;
+  grid-template-columns: 1fr;
+}
+@media (min-width: 756px) {
+  .featured-collection__content {
+    row-gap: 119px;
+    column-gap: 40px;
+    grid-template-columns: 1fr 1fr;
+  }
+}
+/*# sourceMappingURL=data:application/json;charset=utf8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImZlYXR1cmVkLWNvbGxlY3Rpb24uc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNJO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTs7QUFFQTtFQUNFO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBOztBQUdGO0VBQ0U7RUFDQTtFQUNBOztBQUVBO0VBTEY7SUFNSTtJQUNBO0lBQ0EiLCJmaWxlIjoiZmVhdHVyZWQtY29sbGVjdGlvbi5jc3MiLCJzb3VyY2VzQ29udGVudCI6WyIuZmVhdHVyZWQtY29sbGVjdGlvbiB7XHJcbiAgICBkaXNwbGF5OiBmbGV4O1xyXG4gICAgZmxleC1kaXJlY3Rpb246IGNvbHVtbjtcclxuICAgIGp1c3RpZnktY29udGVudDogY2VudGVyO1xyXG4gICAgYWxpZ24taXRlbXM6IGNlbnRlcjtcclxuICAgIHBhZGRpbmctYm90dG9tOiA1MHB4O1xyXG4gICAgYm9yZGVyLWJvdHRvbTogMC4xcmVtIHNvbGlkIHJnYmEodmFyKC0tY29sb3ItZm9yZWdyb3VuZCksIDAuMDgpO1xyXG4gIFxyXG4gICAgJl9fdGl0bGUge1xyXG4gICAgICBjb2xvcjogIzY1Njg3NDtcclxuICAgICAgdGV4dC1hbGlnbjogY2VudGVyO1xyXG4gICAgICBmb250LWZhbWlseTogdmFyKC0tZm9udC1oZWFkaW5nKTtcclxuICAgICAgZm9udC1zaXplOiAyNnB4O1xyXG4gICAgICBmb250LXN0eWxlOiBub3JtYWw7XHJcbiAgICAgIGZvbnQtd2VpZ2h0OiA5MDA7XHJcbiAgICAgIGxpbmUtaGVpZ2h0OiAzNnB4O1xyXG4gICAgfVxyXG4gIFxyXG4gICAgJl9fY29udGVudCB7XHJcbiAgICAgIGRpc3BsYXk6IGdyaWQ7XHJcbiAgICAgIHJvdy1nYXA6IDUwcHg7XHJcbiAgICAgIGdyaWQtdGVtcGxhdGUtY29sdW1uczogMWZyO1xyXG4gIFxyXG4gICAgICBAbWVkaWEgKG1pbi13aWR0aDogNzU2cHgpIHtcclxuICAgICAgICByb3ctZ2FwOiAxMTlweDtcclxuICAgICAgICBjb2x1bW4tZ2FwOiA0MHB4O1xyXG4gICAgICAgIGdyaWQtdGVtcGxhdGUtY29sdW1uczogMWZyIDFmcjtcclxuICAgICAgfVxyXG4gICAgfVxyXG4gIH1cclxuICAiXX0= */
