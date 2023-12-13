@@ -1,0 +1,46 @@
+<style>
+	{% if settings.font_heading == 'shopify' %}
+		{{ settings.font_heading | font_face }}
+
+		{%- assign font_heading_bold = settings.font_heading | font_modify: 'weight', 'bolder' -%}
+		{%- assign font_heading_bold_italic = font_heading_bold | font_modify: 'style', 'italic' -%}
+
+		{{ font_heading_bold | font_face: font_display: 'swap' }}
+		{{ font_heading_bold_italic | font_face: font_display: 'swap' }}
+	{% endif %}
+
+    {% if settings.font_body == 'shopify' %}
+		{{ settings.font_body | font_face }}
+
+		{%- assign font_body_bold = settings.font_body | font_modify: 'weight', 'bolder' -%}
+		{%- assign font_body_bold_italic = font_body_bold | font_modify: 'style', 'italic' -%}
+
+		{{ font_body_bold | font_face: font_display: 'swap' }}
+		{{ font_body_bold_italic | font_face: font_display: 'swap' }}
+    {% endif %}
+
+    :root {
+        --color-background: {{ settings.color_background }};
+        --color-text: {{ settings.color_text }};
+        --color-heading: {{ settings.color_heading }};
+        --color-link: {{ settings.color_link }};
+
+		{% case settings.font_heading %}
+			{% when 'shopify' %}
+		        --font-heading: {{ settings.font_heading.family }}, {{ settings.font_heading.fallback_families }};
+			{% when 'graphik' %}
+		        --font-heading: 'Graphik', sans-serif;
+			{% when 'playfair-display' %}
+		        --font-heading: 'Playfair Display', serif;
+		{% endcase %}
+
+		{% case settings.font_body %}
+			{% when 'shopify' %}
+		        --font-body: {{ settings.font_body.family }}, {{ settings.font_body.fallback_families }};
+			{% when 'graphik' %}
+		        --font-body: 'Graphik', sans-serif;
+			{% when 'playfair-display' %}
+		        --font-body: 'Playfair Display', serif;
+		{% endcase %}
+    }
+</style>
