@@ -7,6 +7,10 @@
       "external": "Opens external website."
     }
   },
-  "components": {},
+  "components": {
+    "card": {
+      "add_to_cart": "Add to cart"
+    }
+  },
   "sections": {}
 }

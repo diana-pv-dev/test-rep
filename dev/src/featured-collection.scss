@@ -14,6 +14,11 @@
       font-style: normal;
       font-weight: 900;
       line-height: 36px;
+
+      @media (min-width: 756px) {
+        font-size: 42px;
+        line-height: 42px;
+      }
     }
   
     &__content {
