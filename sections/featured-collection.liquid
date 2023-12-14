@@ -7,48 +7,47 @@
   <div class="featured-collection page-width">
     <div class="featured-collection__top">
       <h2 class="featured-collection__title">
-        {{section.settings.title}}
+        {{ section.settings.title }}
       </h2>
     </div>
-  
+
     <div class="featured-collection__content">
       {%- for product in products -%}
-        {% assign is_product_in_cart = false %}
-        
-        {%- for item in cart.items -%}
-          {% if item.product.id == product.id %}
-            {% assign is_product_in_cart = true %}
-          {% endif %}
-        {%- endfor -%}
-        
-        {%- unless is_product_in_cart -%}
-          {% render 'card', card_product: product %}
-        {%- endunless -%}
+        {% comment %}
+          {% assign is_product_in_cart = false %}
+
+          {%- for item in cart.items -%}
+            {% if item.product.id == product.id %}
+              {% assign is_product_in_cart = true %}
+            {% endif %}
+          {%- endfor -%}
+
+          {%- unless is_product_in_cart -%}
+            {% render 'card', card_product: product %}
+          {%- endunless -%}
+        {% endcomment %}
+        {% render 'card', card_product: product %}
       {%- endfor -%}
     </div>
-  
   </div>
 </div>
 
-
 {% schema %}
-  {
-    "name": "Featured collection",
-    "settings": [
-      {
-        "type": "text",
-        "id": "title",
-        "default": "Featured Products",
-        "label": "Title"
-      },
-      {
-        "type": "collection",
-        "id": "collection",
-        "label": "Collection"
-      }
-    ],
-    "presets": [
-      {"name": "Featured Collection"}
-    ]
-  }
+{
+  "name": "Featured collection",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "default": "Featured Products",
+      "label": "Title"
+    },
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Collection"
+    }
+  ],
+  "presets": [{ "name": "Featured Collection" }]
+}
 {% endschema %}
