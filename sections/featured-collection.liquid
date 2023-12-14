@@ -1,3 +1,17 @@
+{% style %}
+  .featured-collection {
+    padding-top: {{section.settings.padding_top_mobile}}px;
+    padding-bottom: {{section.settings.padding_bottom_mobile}}px;
+  }
+
+  @media screen and (min-width: 768px) {
+    .featured-collection  {
+      padding-top: {{section.settings.padding_top_desktop}}px;
+      padding-bottom: {{section.settings.padding_bottom_desktop}}px;
+    }
+  }
+{% endstyle %}
+
 {{ 'section-featured-collection.css' | asset_url | stylesheet_tag }}
 
 {%- liquid
@@ -46,6 +60,46 @@
       "type": "collection",
       "id": "collection",
       "label": "Collection"
+    },
+    {
+      "type": "range",
+      "id": "padding_top_desktop",
+      "min": 0,
+      "max": 80,
+      "step": 2,
+      "unit": "px",
+      "label": "Section padding top (Desktop)",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_desktop",
+      "min": 0,
+      "max": 80,
+      "step": 2,
+      "unit": "px",
+      "label": "Section padding bottom (Desktop)",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "min": 0,
+      "max": 60,
+      "step": 2,
+      "unit": "px",
+      "label": "Section padding top (mobile)",
+      "default": 10
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "min": 0,
+      "max": 60,
+      "step": 2,
+      "unit": "px",
+      "label": "Section padding bottom (mobile)",
+      "default": 10
     }
   ],
   "presets": [{ "name": "Featured Collection" }]

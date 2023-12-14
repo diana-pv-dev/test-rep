@@ -1,53 +1,45 @@
-{{ 'header.css' | asset_url | stylesheet_tag }}
+{{ 'section-header.css' | asset_url | stylesheet_tag }}
 
-<div class="header-wrapper">
-  <div class="header page-width">
-    {%- if request.page_type == 'index' -%}
-      <h1 class="header__heading">
-    {%- endif -%}
-        <a href="{{ routes.root_url }}" class="header__heading-link">
-          <span class="header__heading-span">{{ shop.name }}</span>
-        </a>
-    {%- if request.page_type == 'index' -%}
-      </h1>
-    {%- endif -%}
-  
-    <div class="header__icons">
-      <a href="{{ routes.cart_url }}" class="header__icon header__icon--cart" id="cart-icon-bubble">
-          {%- liquid
-            if cart == empty
-              render 'icon-cart-empty'
-            else
-              render 'icon-cart'
-            endif
-          -%}
-          <span class="visually-hidden">{{ 'templates.cart.cart' | t }}</span>
-          {%- if cart != empty -%}
-            <div class="cart-count-bubble">
-              {%- if cart.item_count < 100 -%}
-                <span aria-hidden="true">{{ cart.item_count }}</span>
-              {%- endif -%}
-              <span class="visually-hidden">{{ 'sections.header.cart_count' | t: count: cart.item_count }}</span>
-            </div>
+<div class="header page-width">
+  <h1 class="header__heading">
+    <a href="{{ routes.root_url }}" class="header__heading-link">
+      <span class="header__heading-span">{{ shop.name }}</span>
+    </a>
+  </h1>
+
+  <div class="header__icons">
+    <a href="{{ routes.cart_url }}" class="header__icon header__icon--cart" id="cart-icon-bubble">
+      {%- liquid
+        if cart == empty
+          render 'icon-cart-empty'
+        else
+          render 'icon-cart'
+        endif
+      -%}
+      <span class="visually-hidden">{{ 'templates.cart.cart' | t }}</span>
+      {%- if cart != empty -%}
+        <div class="cart-count-bubble">
+          {%- if cart.item_count < 100 -%}
+            <span aria-hidden="true">{{ cart.item_count }}</span>
           {%- endif -%}
-        </a>
-    </div>
+          <span class="visually-hidden">{{ 'sections.header.cart_count' | t: count: cart.item_count }}</span>
+        </div>
+      {%- endif -%}
+    </a>
   </div>
 </div>
 
-
 {% schema %}
-  {
-    "name": "Header",
-    "tag": "header",
-    "settings": [
-      {
-        "type": "header",
-        "content": "Header settings"
-      }
-    ],
-    "presets": [
-      {"name": "Header"}
-    ]
-  }
+{
+  "name": "Header",
+  "tag": "header",
+  "class": "section-header",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Header settings"
+    }
+  ],
+  "presets": [{ "name": "Header" }]
+}
 {% endschema %}
