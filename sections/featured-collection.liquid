@@ -3,36 +3,37 @@
 {%- liquid
   assign products = section.settings.collection.products
 -%}
-
-<div class="featured-collection">
-  <div class="featured-collection__top">
-    <h2 class="featured-collection__title">
-      {{section.settings.text}}
-    </h2>
-  </div>
-
-  <div class="featured-collection__content">
-    {%- for product in products -%}
-      {% assign is_product_in_cart = false %}
-      
-      {%- for item in cart.items -%}
-        {% if item.product.id == product.id %}
-          {% assign is_product_in_cart = true %}
-        {% endif %}
+<div class="featured-collection--wrapper">
+  <div class="featured-collection page-width">
+    <div class="featured-collection__top">
+      <h2 class="featured-collection__title">
+        {{section.settings.title}}
+      </h2>
+    </div>
+  
+    <div class="featured-collection__content">
+      {%- for product in products -%}
+        {% assign is_product_in_cart = false %}
+        
+        {%- for item in cart.items -%}
+          {% if item.product.id == product.id %}
+            {% assign is_product_in_cart = true %}
+          {% endif %}
+        {%- endfor -%}
+        
+        {%- unless is_product_in_cart -%}
+          {% render 'card', card_product: product %}
+        {%- endunless -%}
       {%- endfor -%}
-      
-      {%- unless is_product_in_cart -%}
-        {% render 'card', card_product: product %}
-      {%- endunless -%}
-    {%- endfor -%}
+    </div>
+  
   </div>
-
 </div>
+
 
 {% schema %}
   {
     "name": "Featured collection",
-    "class": "featured-collection",
     "settings": [
       {
         "type": "text",
