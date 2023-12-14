@@ -3,7 +3,7 @@
 <div class="card {% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
   <a class="card__link" href="{{ card_product.url }}">
     <div class="card__media">
-      <img class="card__img" src="{{ card_product.featured_media | img_url: 'large' }}" alt="{{ card_product.title | escape }}">
+      {%  render 'image-lazy', image: card_product.featured_media, class:"card__img" %}
     </div>
   
   
