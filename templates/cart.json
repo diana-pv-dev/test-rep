@@ -1,11 +1,11 @@
 {
   "sections": {
     "main": {
-      "type": "empty-section",
+      "type": "cart",
       "settings": {}
     }
   },
   "order": [
-    "main"
+    "cart"
   ]
 }

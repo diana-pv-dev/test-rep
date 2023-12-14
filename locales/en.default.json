@@ -12,5 +12,20 @@
       "add_to_cart": "Add to cart"
     }
   },
-  "sections": {}
+  "sections": {
+    "cart": {
+      "title": "Your cart",
+      "estimated_total": "Estimated total",
+      "checkout": "Check out",
+      "empty": "Your cart is empty",
+      "continue_shopping": "Continue shopping",
+      "headings": {
+        "product": "Product",
+        "price": "Price",
+        "total": "Total",
+        "quantity": "Quantity",
+        "image": "Product image"
+      }
+    }
+  }
 }

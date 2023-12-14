@@ -29,13 +29,7 @@
       class="product-form"
       data-section-id="{{ section.id }}"
     >
-      {%- form 'product',
-        card_product,
-        id: product_form_id,
-        class: 'js-product__form',
-        novalidate: 'novalidate',
-        data-type: 'add-to-cart-form'
-      -%}
+      {%- form 'product', card_product, id: product_form_id, class: 'js-product__form' -%}
         <input
           type="hidden"
           name="id"

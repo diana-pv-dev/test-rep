@@ -1,0 +1,194 @@
+{% style %}
+  .section-cart {
+    padding-top: {{section.settings.padding_top_mobile}}px;
+    padding-bottom: {{section.settings.padding_bottom_mobile}}px;
+  }
+
+  @media screen and (min-width: 768px) {
+    .section-cart  {
+      padding-top: {{section.settings.padding_top_desktop}}px;
+      padding-bottom: {{section.settings.padding_bottom_desktop}}px;
+    }
+  }
+{% endstyle %}
+
+<script src="{{ 'cart.js' | asset_url }}" defer="defer"></script>
+<script src="{{ 'quantity-popover.js' | asset_url }}" defer="defer"></script>
+
+<div class="page-width">
+  <div class="section-cart">
+    <div class="s-cart__title-wrapper">
+      <h2>{{ 'sections.cart.title' | t }}</h2>
+    </div>
+
+    {% comment %}
+      <div class="cart__warnings">
+        <h1 class="cart__empty-text">{{ 'sections.cart.empty' | t }}</h1>
+        <a href="{{ routes.all_products_collection_url }}" class="button">
+          {{ 'sections.cart.continue_shopping' | t }}
+        </a>
+      </div>
+    {% endcomment %}
+
+    <form action="{{ routes.cart_url }}" class="s-cart__contents" method="post" id="cart">
+      <div class="s-cart__items">
+        <table class="cart-items">
+          <thead>
+            <tr>
+              <th colspan="2" scope="col">
+                {{ 'sections.cart.headings.product' | t }}
+              </th>
+              <th
+                colspan="1"
+                scope="col"
+              >
+                {{ 'sections.cart.headings.quantity' | t }}
+              </th>
+              <th class="small-hide right caption-with-letter-spacing" colspan="1" scope="col">
+                {{ 'sections.cart.headings.total' | t }}
+              </th>
+            </tr>
+          </thead>
+
+          <tbody>
+            {% for item in cart.items %}
+              <tr class="cart-item" id="CartItem-{{ item.index | plus: 1 }}">
+                <td class="cart-item__media">
+                  {% if item.image %}
+                    {% comment %} Leave empty space due to a:empty CSS display: none rule {% endcomment %}
+                    <a href="{{ item.url }}" aria-hidden="true" tabindex="-1"> </a>
+
+                    {% render 'image-lazy', image: item.image %}
+                  {% endif %}
+                </td>
+                <td class="cart-item__details">
+                  <a href="{{ item.url }}" class="cart-item__name">{{ item.product.title | escape }}</a>
+                  <div class="product-option">
+                    {{ item.original_price | money }}
+                  </div>
+                </td>
+
+                <td>
+                  <div class="quantity-popover-container">
+                    <quantity-input class="quantity cart-quantity">
+                      <button class="quantity__button no-js-hidden" name="minus" type="button">
+                        {% render 'icon-minus' %}
+                      </button>
+                      <input
+                        class="quantity__input"
+                        data-quantity-variant-id="{{ item.variant.id }}"
+                        type="number"
+                        name="updates[]"
+                        value="{{ item.quantity }}"
+                        {% # theme-check-disable %}
+                        data-cart-quantity="{{ cart | item_count_for_variant: item.variant.id }}"
+                        min="{{ item.variant.quantity_rule.min }}"
+                        {% if item.variant.quantity_rule.max != null %}
+                          max="{{ item.variant.quantity_rule.max }}"
+                        {% endif %}
+                        step="{{ item.variant.quantity_rule.increment }}"
+                        {% # theme-check-enable %}
+                        id="Quantity-{{ item.index | plus: 1 }}"
+                        data-index="{{ item.index | plus: 1 }}"
+                      >
+                      <button class="quantity__button no-js-hidden" name="plus" type="button">
+                        {% render 'icon-plus' %}
+                      </button>
+                    </quantity-input>
+                  </div>
+                  <cart-remove-button
+                    id="Remove-{{ item.index | plus: 1 }}"
+                    data-index="{{ item.index | plus: 1 }}"
+                  >
+                    <a
+                      href="{{ item.url_to_remove }}"
+                      class="button button--tertiary"
+                    >
+                      {% render 'icon-remove' %}
+                    </a>
+                  </cart-remove-button>
+                </td>
+
+                <td class="cart-item__totals right small-hide">
+                  <div class="cart-item__price-wrapper">
+                    <span class="price price--end">
+                      {{ item.original_line_price | money }}
+                    </span>
+
+                    {%- if item.variant.available and item.unit_price_measurement -%}
+                      <div class="unit-price caption">
+                        <span class="visually-hidden">{{ 'products.product.price.unit_price' | t }}</span>
+                        {{ item.unit_price | money }}
+                        <span aria-hidden="true">/</span>
+                        <span class="visually-hidden">&nbsp;{{ 'accessibility.unit_price_separator' | t }}&nbsp;</span>
+                        {%- if item.unit_price_measurement.reference_value != 1 -%}
+                          {{- item.unit_price_measurement.reference_value -}}
+                        {%- endif -%}
+                        {{ item.unit_price_measurement.reference_unit }}
+                      </div>
+                    {%- endif -%}
+                  </div>
+                </td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </form>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Cart",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "default": "Your Cart",
+      "label": "Title"
+    },
+    {
+      "type": "range",
+      "id": "padding_top_desktop",
+      "min": 0,
+      "max": 80,
+      "step": 2,
+      "unit": "px",
+      "label": "Section padding top (Desktop)",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_desktop",
+      "min": 0,
+      "max": 80,
+      "step": 2,
+      "unit": "px",
+      "label": "Section padding bottom (Desktop)",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "min": 0,
+      "max": 60,
+      "step": 2,
+      "unit": "px",
+      "label": "Section padding top (mobile)",
+      "default": 10
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "min": 0,
+      "max": 60,
+      "step": 2,
+      "unit": "px",
+      "label": "Section padding bottom (mobile)",
+      "default": 10
+    }
+  ],
+  "presets": [{ "name": "Cart" }]
+}
+{% endschema %}
