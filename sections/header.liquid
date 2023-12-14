@@ -1,7 +1,7 @@
 {{ 'header.css' | asset_url | stylesheet_tag }}
 
 <div class="header-wrapper">
-  <header class="header page-width">
+  <div class="header page-width">
     {%- if request.page_type == 'index' -%}
       <h1 class="header__heading">
     {%- endif -%}
@@ -32,15 +32,14 @@
           {%- endif -%}
         </a>
     </div>
-  </header>
+  </div>
 </div>
 
 
 {% schema %}
   {
     "name": "Header",
-    "tag": "div",
-    "class": "section-header",
+    "tag": "header",
     "settings": [
       {
         "type": "header",
