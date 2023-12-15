@@ -9,6 +9,7 @@ if (!customElements.get('product-form')) {
         this.form.addEventListener('submit', this.onSubmitHandler.bind(this));
         // this.cart = document.querySelector('cart-notification');
         this.submitButton = this.querySelector('js-product__form-button');
+        this.cartCount = document.querySelectorAll('.js-icon-cart__count')
       }
 
       onSubmitHandler(event) {
