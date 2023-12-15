@@ -1,14 +1,14 @@
 {{ 'section-header.css' | asset_url | stylesheet_tag }}
 
-<div class="header page-width">
-  <h1 class="header__heading">
-    <a href="{{ routes.root_url }}" class="header__heading-link">
-      <span class="header__heading-span">{{ shop.name }}</span>
+<div class="s-header page-width">
+  <h1 class="s-header__heading">
+    <a href="{{ routes.root_url }}" class="s-header__heading-link">
+      <span class="s-header__heading-span">{{ shop.name }}</span>
     </a>
   </h1>
 
-  <div class="header__icons">
-    <a href="{{ routes.cart_url }}" class="header__icon header__icon--cart" id="cart-icon-bubble">
+  <div class="s-header__icons">
+    <a href="{{ routes.cart_url }}" class="s-header__icon s-header__icon--cart" id="cart-icon-bubble">
       {%- liquid
         if cart == empty
           render 'icon-cart-empty'
