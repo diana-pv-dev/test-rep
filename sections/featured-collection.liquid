@@ -1,11 +1,11 @@
 {% style %}
-  .featured-collection {
+  .s-featured-collection {
     padding-top: {{section.settings.padding_top_mobile}}px;
     padding-bottom: {{section.settings.padding_bottom_mobile}}px;
   }
 
   @media screen and (min-width: 768px) {
-    .featured-collection  {
+    .s-featured-collection  {
       padding-top: {{section.settings.padding_top_desktop}}px;
       padding-bottom: {{section.settings.padding_bottom_desktop}}px;
     }
@@ -18,14 +18,17 @@
   assign products = section.settings.collection.products
 -%}
 <div class="featured-collection--wrapper">
-  <div class="featured-collection page-width">
-    <div class="featured-collection__top">
-      <h2 class="featured-collection__title">
+  <div class="s-featured-collection page-width">
+    <div class="s-featured-collection__top">
+      <h2 class="s-featured-collection__title">
         {{ section.settings.title }}
+
+        {% comment %} {{ 'sections.featured-collection.title' | t }} {% endcomment %}
+        {% comment %} в кастомайзер чи в переклад? {% endcomment %}
       </h2>
     </div>
 
-    <div class="featured-collection__content">
+    <div class="s-featured-collection__content">
       {%- for product in products -%}
         {% comment %}
           {% assign is_product_in_cart = false %}

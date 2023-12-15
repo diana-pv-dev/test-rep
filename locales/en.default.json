@@ -12,5 +12,9 @@
       "add_to_cart": "Add to cart"
     }
   },
-  "sections": {}
+  "sections": {
+    "featured-collection": {
+      "title": "Featured products"
+    }
+  }
 }
