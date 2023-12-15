@@ -1,0 +1,61 @@
+{{ 'component-product-card.css' | asset_url | stylesheet_tag }}
+
+<div class="c-product-card">
+  <a class="c-product-card__link" href="{{ product.url }}">
+    <div class="c-product-card__media">
+      <img
+        class="c-product-card__img"
+        src="{{ product.featured_media | img_url: 'large' }}"
+        alt="{{ product.title | escape }}"
+      >
+
+      {% comment %} зображення не розтягується :( {% endcomment %}
+      {% comment %} {% render 'image-lazy', image: product.featured_media, class: 'card__img' %} {% endcomment %}
+    </div>
+
+    <div class="c-product-card__content">
+      <h3 class="c-product-card__title">
+        {{ product.title }}
+      </h3>
+    </div>
+  </a>
+
+  <div class="c-product-card__content">
+    {%- liquid
+      assign product_form_id = 'quick-add-' | append: section_id | append: product.id
+    -%}
+
+    <product-form
+      class="product-form"
+      data-section-id="{{ section.id }}"
+    >
+      {%- form 'product', product, id: product_form_id, class: 'js-product__form' -%}
+        <input
+          type="hidden"
+          name="id"
+          value="{{ product.selected_or_first_available_variant.id }}"
+          class="product-variant-id"
+        >
+        {% comment %}
+          <button
+            id="ProductSubmitButton-{{ section_id }}"
+            type="submit"
+            name="add"
+            class="c-product-card__btn js-product__form-button"
+          >
+            <span> {{ 'components.card.add_to_cart' | t }} - {{ product.price | money }} </span>
+          </button>
+        {% endcomment %}
+
+        <button
+          id="ProductSubmitButton-{{ section_id }}"
+          type="submit"
+          name="add"
+          class="c-product-card__btn js-product__form-button"
+        >
+          <span> {{ 'components.card.add_to_cart' | t }} - {{ product.price | money }} </span>
+        </button>
+      {% endform %}
+    </product-form>
+  </div>
+</div>
