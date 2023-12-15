@@ -12,7 +12,10 @@
   }
 {% endstyle %}
 
+<script src="{{ 'component-product-card.js' | asset_url }}" defer></script>
+
 {{ 'section-featured-collection.css' | asset_url | stylesheet_tag }}
+{{ 'component-product-card.css' | asset_url | stylesheet_tag }}
 
 {%- liquid
   assign products = section.settings.collection.products
@@ -22,27 +25,11 @@
     <div class="s-featured-collection__top">
       <h2 class="s-featured-collection__title">
         {{ section.settings.title }}
-
-        {% comment %} {{ 'sections.featured-collection.title' | t }} {% endcomment %}
-        {% comment %} в кастомайзер чи в переклад? {% endcomment %}
       </h2>
     </div>
 
     <div class="s-featured-collection__content">
       {%- for product in products -%}
-        {% comment %}
-          {% assign is_product_in_cart = false %}
-
-          {%- for item in cart.items -%}
-            {% if item.product.id == product.id %}
-              {% assign is_product_in_cart = true %}
-            {% endif %}
-          {%- endfor -%}
-
-          {%- unless is_product_in_cart -%}
-            {% render 'card', card_product: product %}
-          {%- endunless -%}
-        {% endcomment %}
         {% render 'product-card', product: product %}
       {%- endfor -%}
     </div>

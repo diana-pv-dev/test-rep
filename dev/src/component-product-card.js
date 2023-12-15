@@ -5,11 +5,17 @@ if (!customElements.get('product-form')) {
       constructor() {
         super();
 
-        this.form = this.querySelector('js-product__form');
+        }
+
+      connectedCallback() {
+        this.form = this.querySelector('.js-product__form');
         this.form.addEventListener('submit', this.onSubmitHandler.bind(this));
-        // this.cart = document.querySelector('cart-notification');
-        this.submitButton = this.querySelector('js-product__form-button');
+        this.submitButton = this.querySelector('.js-product__form-button');
         this.cartCount = document.querySelectorAll('.js-icon-cart__count')
+      }
+      
+      disconnectedCallback() {
+        this.form.removeEventListener('submit', this.onSubmitHandler)
       }
 
       onSubmitHandler(event) {
@@ -32,13 +38,7 @@ if (!customElements.get('product-form')) {
               console.log(response)
               return; 
             } 
-            // else if (!this.cart) {
-            //   window.location = window.routes.cart_url;
-            //   return;
-            // }
-            console.log(response)
-            this.error = false;
-            // this.cart.open()            
+            this.error = false;         
           })
           .catch((e) => {
             console.error(e);
